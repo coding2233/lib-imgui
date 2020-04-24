@@ -32,6 +32,6 @@ set( imgui_src imgui/imgui.cpp
         imgui/examples/imgui_impl_glfw.cpp
         imgui/examples/imgui_impl_opengl3.cpp )
 
-add_library(${PROJECT_NAME} imgui_opengl3_app.cpp ${imgui_src})
+add_library(${PROJECT_NAME} imgui_app.cpp ${imgui_src})
 
 target_link_libraries(${PROJECT_NAME} glfw ${lib})

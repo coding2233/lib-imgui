@@ -2,8 +2,8 @@
 // Created by wanderer on 4/22/20.
 //
 
-#ifndef IMGUI_OPENGL3_APP_H
-#define IMGUI_OPENGL3_APP_H
+#ifndef IMGUI_APP_H
+#define IMGUI_APP_H
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
@@ -17,10 +17,10 @@
 #pragma comment(lib, "legacy_stdio_definitions")
 #endif
 
-class ImGuiOpenGL3App {
+class ImGuiApp {
 public:
-    ImGuiOpenGL3App();
-    ~ImGuiOpenGL3App();
+    ImGuiApp();
+    ~ImGuiApp();
 
     void Run();
 

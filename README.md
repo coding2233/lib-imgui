@@ -24,21 +24,21 @@ include_directories(lib-imgui
         lib-imgui/imgui
         lib-imgui/imgui/examples)
 
-add_executable(${PROJECT_NAME} TestApp.cpp)
+add_executable(${PROJECT_NAME} TestApp.cpp main.cpp)
 
 target_link_libraries(${PROJECT_NAME} libimgui)
 ```
-6. `TestApp`继承`ImGuiOpenGL3App`，并重写`OnImGui`函数
+6. `TestApp`继承`ImGuiApp`，并重写`OnImGui`函数
 * `test_app.h`
 ```c++
 #ifndef NEWGUI_TESTAPP_H
 #define NEWGUI_TESTAPP_H
 
-#include "imgui_opengl3_app.h"
+#include "imgui_app.h"
 
 #include <iostream>
 
-class TestApp: public ImGuiOpenGL3App {
+class TestApp: public ImGuiApp {
 
 public:
     TestApp();
@@ -64,7 +64,7 @@ TestApp::~TestApp() {}
 
 void TestApp::OnImGui()
 {
-    ImGuiOpenGL3App::OnImGui();
+    ImGuiApp::OnImGui();
 }
 ```
 7. 实现`main.cpp`

@@ -2,25 +2,25 @@
 // Created by wanderer on 4/22/20.
 //
 
-#include "imgui_opengl3_app.h"
+#include "imgui_app.h"
 
 static void glfw_error_callback(int error, const char* description)
 {
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
-ImGuiOpenGL3App::ImGuiOpenGL3App()
+ImGuiApp::ImGuiApp()
 {
 
 }
 
-ImGuiOpenGL3App::~ImGuiOpenGL3App()
+ImGuiApp::~ImGuiApp()
 {
 
 }
 
 
-void ImGuiOpenGL3App::Run()
+void ImGuiApp::Run()
 {
     Init();
     OnImGuiInit();
@@ -28,7 +28,7 @@ void ImGuiOpenGL3App::Run()
     Cleanup();
 }
 
-void ImGuiOpenGL3App::Init()
+void ImGuiApp::Init()
 {
     // Setup window
     glfwSetErrorCallback(glfw_error_callback);
@@ -67,7 +67,7 @@ void ImGuiOpenGL3App::Init()
 }
 
 
-void ImGuiOpenGL3App::MainLoop()
+void ImGuiApp::MainLoop()
 {
     // Main loop
     while (!glfwWindowShouldClose(glfw_window_))
@@ -101,7 +101,7 @@ void ImGuiOpenGL3App::MainLoop()
 }
 
 
-void ImGuiOpenGL3App::Cleanup()
+void ImGuiApp::Cleanup()
 {
     // Cleanup
     ImGui_ImplOpenGL3_Shutdown();
@@ -112,7 +112,7 @@ void ImGuiOpenGL3App::Cleanup()
     glfwTerminate();
 }
 
-void ImGuiOpenGL3App::OnImGuiInit()
+void ImGuiApp::OnImGuiInit()
 {
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
@@ -147,7 +147,7 @@ void ImGuiOpenGL3App::OnImGuiInit()
     clear_color_= ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 }
 
-void ImGuiOpenGL3App::OnImGui()
+void ImGuiApp::OnImGui()
 {
     ImGui::ShowDemoWindow();
 }
