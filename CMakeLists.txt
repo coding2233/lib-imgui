@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 
-project(lib-imgui)
+project(libimgui)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -12,9 +12,11 @@ include_directories(imgui
         library/glew-2.2.0/include)
 
 if(WIN32)
+    message("windows operation system")
     link_directories(library/glew-2.2.0/lib/Release/x64)
-    set(lib opengl32 glew32)
-elseif(unix)
+    set(lib glew32 opengl32)
+elseif(UNIX)
+    message("like unix operation system")
     find_library(opengl-lib NAMES OpenGL GL)
     message(${opengl-lib})
 
@@ -32,4 +34,4 @@ set( imgui_src imgui/imgui.cpp
 
 add_library(${PROJECT_NAME} imgui_opengl3_app.cpp ${imgui_src})
 
-target_link_libraries(${PROJECT_NAME} glfw ${opengl-lib} ${glew-lib})
+target_link_libraries(${PROJECT_NAME} glfw ${lib})

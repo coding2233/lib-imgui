@@ -151,12 +151,3 @@ void ImGuiOpenGL3App::OnImGui()
 {
     ImGui::ShowDemoWindow();
 }
-
-
-
-int main()
-{
-    ImGuiOpenGL3App app;
-    app.Run();
-    return  0;
-}
