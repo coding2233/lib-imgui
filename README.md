@@ -24,6 +24,10 @@ include_directories(lib-imgui
         lib-imgui/imgui
         lib-imgui/imgui/examples)
 
+if(WIN32)
+    include_directories(lib-imgui/library/glew-2.2.0/include)
+endif()
+
 add_executable(${PROJECT_NAME} TestApp.cpp main.cpp)
 
 target_link_libraries(${PROJECT_NAME} libimgui)
@@ -69,7 +73,7 @@ void TestApp::OnImGui()
 ```
 7. 实现`main.cpp`
 ```c++
-int main(int argc char* args)
+int main(int argc char** args)
 {
     TestApp app;
     app.Run();

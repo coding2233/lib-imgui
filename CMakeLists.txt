@@ -13,8 +13,9 @@ include_directories(imgui
 
 if(WIN32)
     message("windows operation system")
-    link_directories(library/glew-2.2.0/lib/Release/x64)
-    set(lib glew32 opengl32)
+   # link_directories(library/glew-2.2.0/lib/Release/x64)
+   set(glew32-lib-dir ${CMAKE_CURRENT_SOURCE_DIR}/library/glew-2.2.0/lib/Release/x64)
+   set(lib opengl32 ${glew32-lib-dir}/glew32.lib)
 elseif(UNIX)
     message("like unix operation system")
     find_library(opengl-lib NAMES OpenGL GL)
