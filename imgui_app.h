@@ -6,18 +6,19 @@
 #define IMGUI_APP_H
 
 #include "imgui.h"
-#include "imgui_impl_glfw.h"
+#include "imgui_impl_sdl.h"
 #include "imgui_impl_opengl3.h"
 
 #include <GL/glew.h>
-#include <GLFW/glfw3.h>
+#include <SDL.h>
 #include <stdio.h>
 
-#if defined(_MSC_VER) && (_MSC_VER >= 1900) && !defined(IMGUI_DISABLE_WIN32_FUNCTIONS)
-#pragma comment(lib, "legacy_stdio_definitions")
-#endif
+// #if defined(_MSC_VER) && (_MSC_VER >= 1900) && !defined(IMGUI_DISABLE_WIN32_FUNCTIONS)
+// #pragma comment(lib, "legacy_stdio_definitions")
+// #endif
 
-class ImGuiApp {
+class ImGuiApp
+{
 public:
     ImGuiApp();
     ~ImGuiApp();
@@ -26,7 +27,7 @@ public:
 
 private:
     GLFWwindow *glfw_window_;
-    const char* glsl_version_;
+    const char *glsl_version_;
 
     void Init();
     void MainLoop();
@@ -36,8 +37,6 @@ protected:
     ImVec4 clear_color_;
     virtual void OnImGuiInit();
     virtual void OnImGui();
-
 };
-
 
 #endif //MAIN_IMGUI_OPENGL3_APP_H
