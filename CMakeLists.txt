@@ -4,11 +4,11 @@ project(libimgui)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_subdirectory(glfw)
+add_subdirectory(sdl)
 
 include_directories(imgui
-        imgui/examples
-        glfw/include
+        imgui/backends
+        sdl/include
         library/glew-2.2.0/include)
 
 if(WIN32)
@@ -30,9 +30,11 @@ set( imgui_src imgui/imgui.cpp
         imgui/imgui_draw.cpp
         imgui/imgui_widgets.cpp
         imgui/imgui_demo.cpp
-        imgui/examples/imgui_impl_glfw.cpp
-        imgui/examples/imgui_impl_opengl3.cpp )
+        imgui/imgui_tables.cpp
+        imgui/backends/imgui_impl_sdl.cpp
+        imgui/backends/imgui_impl_opengl3.cpp )
+
 
 add_library(${PROJECT_NAME} imgui_app.cpp ${imgui_src})
 
-target_link_libraries(${PROJECT_NAME} glfw ${lib})
+target_link_libraries(${PROJECT_NAME} ${lib} SDL2 SDL2main)
