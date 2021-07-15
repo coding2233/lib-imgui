@@ -81,6 +81,7 @@ void ImGuiApp::MainLoop()
 
         // Rendering
         ImGui::Render();
+    
 
         ImGuiIO &io = ImGui::GetIO();
         glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
@@ -99,7 +100,7 @@ void ImGuiApp::MainLoop()
             ImGui::RenderPlatformWindowsDefault();
             SDL_GL_MakeCurrent(backup_current_window, backup_current_context);
         }
-
+        
         SDL_GL_SwapWindow(sdl_window_);
     }
 }
@@ -123,7 +124,7 @@ void ImGuiApp::OnImGuiInit()
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
     SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-    SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+    SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI |  SDL_WINDOW_HIDDEN);
     sdl_window_ = SDL_CreateWindow("Dear ImGui SDL2+OpenGL3 example", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, window_flags);
     gl_context_ = SDL_GL_CreateContext(sdl_window_);
     SDL_GL_MakeCurrent(sdl_window_, gl_context_);
@@ -148,7 +149,8 @@ void ImGuiApp::OnImGuiInit()
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;   // Enable Docking
     io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable; // Enable Multi-Viewport / Platform Windows
     //io.ConfigViewportsNoAutoMerge = true;
-    //io.ConfigViewportsNoTaskBarIcon = true;
+    io.ConfigViewportsNoTaskBarIcon = true;
+    io.ConfigViewportsNoAutoMerge = true;
 
     // Setup Dear ImGui style
     ImGui::StyleColorsDark();
@@ -182,12 +184,17 @@ void ImGuiApp::OnImGuiInit()
     //IM_ASSERT(font != NULL);
 
     clear_color_ = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+    //glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void ImGuiApp::OnImGui()
 {
-    bool show = true;
+    bool show = !is_done_;
     ImGui::ShowDemoWindow(&show);
+    if (!show)
+    {
+        is_done_ = true;
+    }
 }
 
 void ImGuiApp::OnImGuiCleanup()

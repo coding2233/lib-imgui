@@ -2,6 +2,11 @@
 // Created by wanderer on 4/22/20.
 //
 
+#if WIN32
+#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
+#endif
+
+
 #ifndef IMGUI_APP_H
 #define IMGUI_APP_H
 
@@ -27,7 +32,6 @@ public:
 
 private:
     SDL_Window *sdl_window_;
-    SDL_GLContext gl_context_;
     const char *glsl_version_;
 
     void Init();
@@ -35,6 +39,7 @@ private:
     void Cleanup();
 
 protected:
+    SDL_GLContext gl_context_;
     ImVec4 clear_color_;
     bool is_done_;
     virtual void OnImGuiInit();
